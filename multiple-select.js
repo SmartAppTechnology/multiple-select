@@ -540,7 +540,7 @@
                 texts = [],
                 values = [];
             this.$drop.find(sprintf('input[%s]:checked', this.selectItemName)).each(function () {
-                texts.push($(this).parents('li').first().text());
+                texts.push($(this).closest('label').first().text());
                 values.push($(this).val());
             });
 
