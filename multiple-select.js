@@ -643,30 +643,30 @@
                 text = $.trim(this.$searchInput.val()).toLowerCase();
 
             if (text.length === 0) {
-                this.$selectAll.parent().show();
-                this.$selectItems.parent().show();
-                this.$disableItems.parent().show();
-                this.$selectGroups.parent().show();
+                this.$selectAll.parent().parent().show();
+                this.$selectItems.parent().parent().show();
+                this.$disableItems.parent().parent().show();
+                this.$selectGroups.parent().parent().show();
                 this.$noResults.hide();
             } else {
                 this.$selectItems.each(function () {
-                    var $parent = $(this).parent();
+                    var $parent = $(this).parent().parent();
                     $parent[removeDiacritics($parent.text().toLowerCase()).indexOf(removeDiacritics(text)) < 0 ? 'hide' : 'show']();
                 });
-                this.$disableItems.parent().hide();
+                this.$disableItems.parent().parent().hide();
                 this.$selectGroups.each(function () {
-                    var $parent = $(this).parent();
+                    var $parent = $(this).parent().parent();
                     var group = $parent.attr('data-group'),
                         $items = that.$selectItems.filter(':visible');
                     $parent[$items.filter(sprintf('[data-group="%s"]', group)).length ? 'show' : 'hide']();
                 });
 
                 //Check if no matches found
-                if (this.$selectItems.parent().filter(':visible').length) {
-                    this.$selectAll.parent().show();
+                if (this.$selectItems.parent().parent().filter(':visible').length) {
+                    this.$selectAll.parent().parent().show();
                     this.$noResults.hide();
                 } else {
-                    this.$selectAll.parent().hide();
+                    this.$selectAll.parent().parent().hide();
                     this.$noResults.show();
                 }
             }
